@@ -1,4 +1,6 @@
 import csv
+import matplotlib.pyplot as plt
+import numpy as np
 #csv means Comma separated Values
 
 with open("YA_Books.csv", mode = "r") as bookfile:
@@ -8,39 +10,39 @@ with open("YA_Books.csv", mode = "r") as bookfile:
     #skip header row
     next(books)
 
-    most_recent_published = 0 #starting low so that we get the first book
-    ratings_ph = 5
     
 
     for book in books:
         title = book[0]
         author = book[1]
-
-        #print all the authors who's names start with "M"
-        #if author.startswith("M"):
-        #   print(author)
-
-        #get most recently publishes book
         year = int(book[2])
+        number_of_pages = int(book[5])
         rating = float(book[6])
+        
 
-        # if year > most_recent_published:
-            # most_recent_published = year
-            # most_recent_book = book
-
-            #Get the boo with the worst rating and print it out
-
-        if rating < ratings_ph:
+        ratings_ph = 0
+        n_o_p_ph = 0
+        
+        #Highest rating book
+        if ratings_ph < rating:
             ratings_ph = rating
-
-    # print(f"Most recently published: {most_recent_book}")
-    # print (f"the worst rating is: {ratings_ph}")
-
-
-
-
-#what is the highest rating for any book
-    ratings_ph = 0
+            
     
 
+        #How many different publishers are represented in the dataset
+        publisher_count= 0
 
+        for book in books:
+            publisher_count += 1
+               
+    
+    
+
+print (f" The highest rating for any book in the dataset is {rating}")
+print(f"There are {publisher_count} publishers represented in this dataset")
+
+
+x = ["Highest Rating ", "Publisher Count"]
+y= [rating,publisher_count]
+plt.bar(x,y)
+plt.show()
